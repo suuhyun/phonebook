@@ -10,7 +10,7 @@ const SearchBox = ({ setSearchInput }) => {
         <IoIosSearch />
         <input
           onChange={(e) => setSearchInput(e.target.value)}
-          className="ml-2 focus:outline-none bg-gray-100"
+          className="ml-2 focus:outline-none bg-gray-100 w-full"
           type="text"
           placeholder="Search"
         />

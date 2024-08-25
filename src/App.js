@@ -37,6 +37,7 @@ function App() {
         />
       </div>
       <SearchBox setSearchInput={setSearchInput} />
+      <div className="place-self-end p-1 font-bold">All Contacts: {contactList.length}</div>
       <div className="w-full p-2 flex flex-col gap-2">
         {searchInput === ""
           ? contactList.map((contact) => <Contact contact={contact} />)
