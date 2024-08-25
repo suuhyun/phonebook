@@ -32,7 +32,7 @@ function App() {
       <div className="flex justify-between items-center w-full">
         <div className="text-3xl p-2 my-1">Contacts</div>
         <FiPlus
-          className="mr-1 mt-2 !cursor-pointer"
+          className="mr-1 mt-2 cursor-pointer hover:bg-gray-100 rounded-full"
           onClick={() => setOpenModal(true)}
         />
       </div>

@@ -6,22 +6,27 @@ const NewContactModal = ({ setOpenModal }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, SetPhoneNumber] = useState(0);
+  const [errorMsg, setErrorMsg] = useState("");
   const dispatch = useDispatch();
 
   const addContact = (e) => {
-    console.log("addContact");
     e.preventDefault();
-    dispatch({
-      type: "ADD_CONTACT",
-      payload: { firstName, lastName, phoneNumber },
-    });
-    setOpenModal(false);
+    if ((firstName || lastName) && phoneNumber) {
+      dispatch({
+        type: "ADD_CONTACT",
+        payload: { firstName, lastName, phoneNumber },
+      });
+      setOpenModal(false);
+      setErrorMsg("")
+    } else {
+      setErrorMsg("Invalid Input")
+    }
   };
 
   return (
     <div className="absolute bg-white md:w-[450px] max-md:w-4/5 rounded-lg shadow-lg flex flex-col p-5 gap-3">
       <RxCross2
-        className="!cursor-pointer absolute right-5 mt-2"
+        className="cursor-pointer absolute right-5 mt-2 hover:bg-gray-100 rounded-full"
         onClick={() => setOpenModal(false)}
       />
       <div className="text-center text-xl">New Contact</div>
@@ -47,9 +52,10 @@ const NewContactModal = ({ setOpenModal }) => {
           type="text"
           placeholder="Phone"
         />
+        <div className="text-red-500 place-self-start ml-2">{errorMsg}</div>
         <button
           type="submit"
-          className="p-2 px-3 w-fit bg-blue-500 text-white rounded-lg"
+          className="p-2 px-3 w-fit bg-blue-500 text-white rounded-lg hover:bg-blue-600"
         >
           Save
         </button>
